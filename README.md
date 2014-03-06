@@ -1,0 +1,2 @@
+<h1>Fox Wolf Hydrologic Dashboard v4.0</h1>
+<p>Web application that explores the relationship between storm events in the Fox Wolf watershed and the resulting impacts on Green Bay. This is the fourth version of the hydrologic dashboard.</p>
