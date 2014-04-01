@@ -23,8 +23,8 @@
 	</div>
 	<div id="pickData">
 	<h3>2. Select Gauge Data:</h3>
-	<h5>Precipitation</h5>
-	<h5>Turbidity</h5>
+	<h5><input type="checkbox" id="precipitationCheck">Precipitation</h5>
+	<h5><input type="checkbox" id="streamflowCheck">Streamflow</h5>
 	</div>
 	<div id="pickStorm">
 	<h3>3. Select Storm Event:</h3>
@@ -39,6 +39,10 @@
 		<h5><b>Duration:</b></h5>
 		<h5><b>Max Precip:</b></h5>
 		<h5><b>Adjust Transparency:</b></h5>
+		<form>
+			  0<input name="stormOpacity" type="range" min="0" max="100" value="50">100
+			  <input type="submit" value="Go">
+		</form>
 	</div>
 	<div id="animateMap">
 	<h3>4. Animate Storm Event:</h3>
@@ -46,8 +50,8 @@
 	</div>
 	<div id="mapLayers">
 		<h3>Additional Map Layers:</h3>
-		<h5>LandCover</h5>
-		<h5>Fox-Wolf Watershed</h5>
+		<h5><input type="checkbox" id="fwWatershedCheck">Fox-Wolf Watershed</h5>
+		<h5><input type="checkbox" id="landCoverCheck">LandCover</h5>
 	</div>
 </div>
 
