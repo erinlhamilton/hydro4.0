@@ -8,15 +8,54 @@
 </head>
 <body>
 <header>
-	<h1>Fox Wolf Hydrologic Dashboard 4.0</h1>
+	<h1>Fox-Wolf Hydrologic Dashboard 4.0</h1>
 </header>
-<div id="column"></div>
 <div id ="container">
+<div id="column">
+	<div id="pickGauge">
+		<h3>1. Select Stream Gauge:</h3>
+		<select>
+		  <option value="volvo">Wolf River at Langlade, WI - 04074950 </option>
+		  <option value="saab">Embarrass River Near Embarrass, WI - 0407850</option>
+		  <option value="mercedes">Fox River at Princeton, WI - 04073365</option>
+		  <option value="audi">Duck Creek Near Howard, WI - 04072150</option>
+		</select>
+	</div>
+	<div id="pickData">
+	<h3>2. Select Gauge Data:</h3>
+	<h5>Precipitation</h5>
+	<h5>Turbidity</h5>
+	</div>
+	<div id="pickStorm">
+	<h3>3. Select Storm Event:</h3>
+	<select>
+		  <option value="volvo">May 10, 2004</option>
+		  <option value="saab">June 21, 2008</option>
+		  <option value="mercedes">July 15, 2010</option>
+		  <option value="audi">August 3, 2012</option>
+		</select>
+		<h5><b>Start Date:</b></h5>
+		<h5><b>End Date:</b></h5>
+		<h5><b>Duration:</b></h5>
+		<h5><b>Max Precip:</b></h5>
+		<h5><b>Adjust Transparency:</b></h5>
+	</div>
+	<div id="animateMap">
+	<h3>4. Animate Storm Event:</h3>
+	<button type="button">Animate Map</button>
+	</div>
+	<div id="mapLayers">
+		<h3>Additional Map Layers:</h3>
+		<h5>LandCover</h5>
+		<h5>Fox-Wolf Watershed</h5>
+	</div>
+</div>
+
 	<div id="map"></div>
 </div>
 
 <footer>
-2014
+Copyright University of Wisconsin Sea Grant Institute 2014
 </footer>
 
 
