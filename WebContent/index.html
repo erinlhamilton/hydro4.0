@@ -4,6 +4,7 @@
 <meta charset="ISO-8859-1">
 <title>Hydro Dashboard 4.0</title>
 <link rel="stylesheet" type="text/css" href="css/leaflet.css">
+<link rel="stylesheet" type="text/css" href="css/c3.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -54,28 +55,29 @@
 		<h5><input type="checkbox" id="landCoverCheck">LandCover</h5>
 	</div>
 </div>
-<div id=vizContainer>
-	<h4 class="vizHeading">Fox-Wolf Watershed</h2>
-	<h4 class="vizHeading">Green Bay</h2>
+<div id=fwContainer>
+	<h4 id="fwHeader">Fox-Wolf Watershed</h4>
 	<div id="fwMap"></div>
+	<div id="fwChart"></div>
+</div>
+<div id=gbContainer>
+	<h4 id="gbHeader">Green Bay</h4>
 	<div id="gbMap"></div>
+	<div id="gbChart"></div>
 </div>
+
 </div>
-<!--  
-<footer>
-Copyright University of Wisconsin Sea Grant Institute 2014
-</footer>-->
-
-
 
 <!-- JavaScript Libraries -->
 <script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="lib/leaflet.js"></script>
 <script type="text/javascript" src="lib/d3.min.js"></script>
+<script type="text/javascript" src="lib/c3.min.js"></script>
 
 
 <!-- Custom JavaScript Code -->
 <script type="text/javascript" src="js/baseMap.js"></script>
+<script type="text/javascript" src="js/charts.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

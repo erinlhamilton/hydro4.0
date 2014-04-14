@@ -87,35 +87,61 @@ input[type="range"] {
 	padding: 3px;
 }
 
-#vizContainer{
-	float: right;
-	width:73%;
+#fwContainer{
+	float: left;
+	width:39%;
 	height: 100%;
+	margin-left: 1em;
 }
 
-.vizHeading{
-	width: 200px;
+#fwHeader{
 	margin: 0;
-	padding: 0;
-	display: inline;
+	width: 100%;
 }
-
 #fwMap{
 	clear:both;
-	float: left;
 	height:65%;
-	width:59%;
+	width:100%;
 	margin: 0;
 	padding:0;
-
 }
-#gbMap{
-	float: right;
-	height:65%;
-	width:39%;
+
+#fwChart{
+	clear:both;
+	height:32%;
+	width:100%;
 	margin: 0;
 	padding:0;
+}
 
+#gbContainer{
+	float: right;
+	width: 32%;
+	height: 100%;
+	margin-right: 1em;
+	
+}
+
+#gbHeader{
+	margin: 0;
+	width: 100%;
+}
+
+
+#gbMap{
+	height:65%;
+	width:100%;
+	margin: 0;
+	padding:0;
+}
+
+
+
+#gbChart{
+	height:32%;
+	width:100%;
+	margin: 0;
+	padding:0;
 }
 
 
