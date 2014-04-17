@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hydro Dashboard 4.0</title>
+
+    <link rel="stylesheet" href="css/foundation.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/leaflet.css">
+	<link rel="stylesheet" type="text/css" href="css/c3.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="lib/vendor/modernizr.js"></script>
+</head>
+<body>
+      <!-- Header and Nav -->
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+          <a href="#">
+           	Fox-Wolf Hydrologic Dashboard 4.0
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+ 
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        <li><a href="#">Help</a></li>
+        <li class="divider"></li>
+        <li><a href="#">About</a></li>
+          </ul>
+    </section>
+  </nav>
+ 
+ 
+  <!-- End Header and Nav -->
+ 
+  <!-- Main Grid Section -->
+   <div class="row">
+ <div class="large-8 push-4 columns">
+	 <div class="row" >
+	 <div class="panel">
+	 <div id="map">
+        </div>
+        </div>
+
+	 </div>
+	 	 <div class="row">
+	 	 <div class="panel">
+		<div id ="chart">
+		</div>
+		</div>
+
+	 </div>
+ </div>
+ 
+   <!-- End Grid Section -->
+  <!-- Nav Sidebar -->
+<div class="large-4 pull-8 columns" id ="navColumn">
+	  <div class="panel">
+	 <div class="row">
+	
+       <label><h5>1. Select Stream Gauge:</h5>
+        <select>
+          <option value="04074950">Wolf River at Langlade, WI - 04074950 </option>
+          <option value="0407850">Embarrass River Near Embarrass, WI - 0407850</option>
+          <option value="04073365">Fox River at Princeton, WI - 04073365</option>
+          <option value="04072150">Duck Creek Near Howard, WI - 04072150</option>
+        </select>
+      </label>
+            <label><h6>Available Data:</h6></label>
+			<input type="checkbox" id="precipitationCheck">Precipitation<br>
+			<input type="checkbox" id="streamflowCheck">Streamflow<br>
+ <hr>
+ 	</div>
+	 	 <div class="row">
+		 <h5>2. Select Storm Event:</h5>
+	 	<select>
+		  <option value="volvo">May 10, 2004</option>
+		  <option value="saab">June 21, 2008</option>
+		  <option value="mercedes">July 15, 2010</option>
+		  <option value="audi">August 3, 2012</option>
+		</select>
+        		<h5><b>Start Date:</b></h5>
+		<h5><b>End Date:</b></h5>
+		<h5><b>Duration:</b></h5>
+		<h5><b>Max Precip:</b></h5>
+
+		
+	
+
+	 </div>
+	 <hr>
+	 	 	 <div class="row">
+	 	 	  <h5>3. Select Green Bay Data:</h5>
+		<label><h6>For Graph:</h6></label>
+			<input type="checkbox" id="turbidityCheck">Turbidity<br>
+			   <label><h6>For Map:</h6></label><br>
+     		 <input type="radio" name="Chlorophyll" value="Chlorophyll" id="Chlorophyll"><label for="Chlorophyll">Chlorophyll </label><br>
+      <input type="radio" name="waterTemp" value="waterTemp" id="waterTemp"><label for="waterTemp">Water Temperature</label>
+
+	 </div>
+	 <hr>
+	 	 	 	 <div class="row">
+	 	 	  <h5>4. Animate Event:</h5>
+			<a href="#" class="button">Animate</a>
+	 </div>
+	 <hr>
+	  	<div class="row">
+	 	 	  <h5>Additional Map Layers:</h5>
+			<input type="checkbox" id="foxWolf">Fox-Wolf Watershed<br>
+			<input type="checkbox" id="landcover">Landcover<br>
+	 </div>
+	</div>
+ </div>
+<!-- End Nav Sidebar -->
+ 
+ 
+ 
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+    
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>© 2014 University of Wisconsin Sea Grant Institute </p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><a href="#">Section 1</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+    <!-- JavaScript Libraries -->
+<script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="lib/leaflet.js"></script>
+<script type="text/javascript" src="lib/d3.min.js"></script>
+<script type="text/javascript" src="lib/c3.min.js"></script>
+
+
+<!-- Custom JavaScript Code -->
+<script type="text/javascript" src="js/baseMap.js"></script>
+<script type="text/javascript" src="js/charts.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

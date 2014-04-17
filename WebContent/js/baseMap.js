@@ -2,19 +2,19 @@
  * 
  */
 
-var fwMap = L.map('fwMap').setView([44.500, -88.7000], 8);
+var map = L.map('map').setView([44.500, -88.7000], 8);
 
 L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
     maxZoom: 18
-}).addTo(fwMap);
+}).addTo(map);
 
-var gbMap = L.map('gbMap').setView([44.700, -87.800], 10);
-
-L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-    maxZoom: 18
-}).addTo(gbMap);
+//var gbMap = L.map('gbMap').setView([44.700, -87.800], 10);
+//
+//L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+//    attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+//    maxZoom: 18
+//}).addTo(gbMap);
 
 
 
@@ -24,5 +24,6 @@ L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap
 //    format: 'image/png',
 //    version: '1.1.0',
 //    attribution: 'Michigan Tech',
+//    transparency: true,
 //    srs:'EPSG:4326'
-//}).addTo(map);
+//}).addTo(gbMap);
