@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/foundation.min.css" />
     <link rel="stylesheet" type="text/css" href="css/leaflet.css">
 	<link rel="stylesheet" type="text/css" href="css/c3.css">
+	 <link rel="stylesheet" href="css/simple-slider.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="lib/vendor/modernizr.js"></script>
 </head>
@@ -42,23 +43,22 @@
   <!-- End Header and Nav -->
  
   <!-- Main Grid Section -->
-   <div class="row">
- <div class="large-8 push-4 columns">
-	 <div class="row" >
-	 <div class="panel">
-	 <div id="map">
-        </div>
-        </div>
 
-	 </div>
-	 	 <div class="row">
-	 	 <div class="panel">
-		<div id ="chart">
+ <div class="large-8 push-4 columns" id="viz">
+	 <div  class="panel"  >
+	 	<div class="row" >
+	 		<div id="map">
+       		</div>
+		 </div>
+	</div>
+	<div  class="panel" >
+	 	 <div class="row" >
+			<div id ="chart">
+			</div>
 		</div>
-		</div>
+	</div>
+</div>
 
-	 </div>
- </div>
  
    <!-- End Grid Section -->
   <!-- Nav Sidebar -->
@@ -66,56 +66,57 @@
 	  <div class="panel">
 	 <div class="row">
 	
-       <label><h5>1. Select Stream Gauge:</h5>
-        <select>
+       <h3><small><b>1. Select Stream Gauge:</b></small></h3>
+        <h5><small><select>
           <option value="04074950">Wolf River at Langlade, WI - 04074950 </option>
           <option value="0407850">Embarrass River Near Embarrass, WI - 0407850</option>
           <option value="04073365">Fox River at Princeton, WI - 04073365</option>
           <option value="04072150">Duck Creek Near Howard, WI - 04072150</option>
-        </select>
-      </label>
-            <label><h6>Available Data:</h6></label>
-			<input type="checkbox" id="precipitationCheck">Precipitation<br>
-			<input type="checkbox" id="streamflowCheck">Streamflow<br>
+        </select></small></h5>
+            <h4><small><b>Available Data:</b></small></h4>
+			<h4><small><input type="checkbox" id="precipitationCheck"> Precipitation</small></h4>
+			<h4><small><input type="checkbox" id="streamflowCheck">Streamflow</small></h4>
  <hr>
  	</div>
 	 	 <div class="row">
-		 <h5>2. Select Storm Event:</h5>
-	 	<select>
+		 <h3><small><b>2. Select Storm Event:</b></small></h3>
+	 	<h5><small><select>
 		  <option value="volvo">May 10, 2004</option>
 		  <option value="saab">June 21, 2008</option>
 		  <option value="mercedes">July 15, 2010</option>
 		  <option value="audi">August 3, 2012</option>
-		</select>
-        		<h5><b>Start Date:</b></h5>
-		<h5><b>End Date:</b></h5>
-		<h5><b>Duration:</b></h5>
-		<h5><b>Max Precip:</b></h5>
-
+		</select></small></h5>
+        	<h4><small>Start Date:</small></h4>
+			<h4><small>End Date:</small></h4>
+			<h4><small>Duration:</small></h4>
+			<h4><small>Max Precip:</small></h4>
+		<h4><small><b>Adjust Transparency:</b></small></h4>
+		<input type="text" data-slider="true" data-slider-range="0, 100">
 		
 	
 
 	 </div>
 	 <hr>
 	 	 	 <div class="row">
-	 	 	  <h5>3. Select Green Bay Data:</h5>
-		<label><h6>For Graph:</h6></label>
-			<input type="checkbox" id="turbidityCheck">Turbidity<br>
-			   <label><h6>For Map:</h6></label><br>
-     		 <input type="radio" name="Chlorophyll" value="Chlorophyll" id="Chlorophyll"><label for="Chlorophyll">Chlorophyll </label><br>
-      <input type="radio" name="waterTemp" value="waterTemp" id="waterTemp"><label for="waterTemp">Water Temperature</label>
+	 	 	  <h3><small><b>3. Select Green Bay Data:</b></small></h3>
+		    <h4><small><b>For Graph:</b></small></h4>
+				<h4><small><input type="checkbox" id="turbidityCheck">Turbidity</small></h4>
+			<h4><small><b>For Map:</b></small></h4>
+				<h4><small> <input type="radio" name="noVal" value="None" id="noVal"><label for="noVal">None </small></h4>
+     			<h4><small> <input type="radio" name="Chlorophyll" value="Chlorophyll" id="Chlorophyll"><label for="Chlorophyll">Chlorophyll </small></h4>
+     			<h4><small><input type="radio" name="waterTemp" value="waterTemp" id="waterTemp"><label for="waterTemp">Surface Temperature</small></h4>
 
 	 </div>
 	 <hr>
 	 	 	 	 <div class="row">
-	 	 	  <h5>4. Animate Event:</h5>
+	 	 	  <h3><small><b>4. Animate Event:</b></small></h3>
 			<a href="#" class="button">Animate</a>
 	 </div>
 	 <hr>
 	  	<div class="row">
-	 	 	  <h5>Additional Map Layers:</h5>
-			<input type="checkbox" id="foxWolf">Fox-Wolf Watershed<br>
-			<input type="checkbox" id="landcover">Landcover<br>
+	 	 	  <h3><small><b>Additional Map Layers:</b></small></h3>
+			<h4><small><input type="checkbox" id="foxWolf">Fox-Wolf Watershed</small></h4>
+			<h4><small><input type="checkbox" id="landcover">Landcover</small></h4>
 	 </div>
 	</div>
  </div>
@@ -135,7 +136,7 @@
         </div>
         <div class="large-6 columns">
           <ul class="inline-list right">
-            <li><a href="#">Section 1</a></li>
+            <li><a href="#">Home</a></li>
           </ul>
         </div>
       </div>
@@ -146,6 +147,7 @@
 <script type="text/javascript" src="lib/leaflet.js"></script>
 <script type="text/javascript" src="lib/d3.min.js"></script>
 <script type="text/javascript" src="lib/c3.min.js"></script>
+<script type="text/javascript" src="lib/simple-slider.min.js"></script>
 
 
 <!-- Custom JavaScript Code -->
