@@ -1,78 +1,151 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Hydro Dashboard 4.0</title>
-<link rel="stylesheet" type="text/css" href="css/leaflet.css">
-<link rel="stylesheet" type="text/css" href="css/c3.css">
-<link rel="stylesheet" type="text/css" href="css/style.css">
+   <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hydro Dashboard 4.0</title>
+
+    <link rel="stylesheet" href="css/foundation.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/leaflet.css">
+	<link rel="stylesheet" type="text/css" href="css/c3.css">
+	 <link rel="stylesheet" href="css/simple-slider.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="lib/vendor/modernizr.js"></script>
 </head>
 <body>
-<header>
-	<h1>Fox-Wolf Hydrologic Dashboard 4.0</h1>
-</header>
-<div id ="container">
-<div id="column">
-	<div id="pickGauge">
-		<h3>1. Select Stream Gauge:</h3>
-		<select>
-		  <option value="volvo">Wolf River at Langlade, WI - 04074950 </option>
-		  <option value="saab">Embarrass River Near Embarrass, WI - 0407850</option>
-		  <option value="mercedes">Fox River at Princeton, WI - 04073365</option>
-		  <option value="audi">Duck Creek Near Howard, WI - 04072150</option>
-		</select>
+      <!-- Header and Nav -->
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+          <a href="#">
+           	Fox-Wolf Hydrologic Dashboard 4.0
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+ 
+    <section class="top-bar-section">
+ 
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        <li><a href="#">Help</a></li>
+        <li class="divider"></li>
+        <li><a href="#">About</a></li>
+          </ul>
+    </section>
+  </nav>
+ 
+ 
+  <!-- End Header and Nav -->
+ 
+  <!-- Main Grid Section -->
+
+ <div class="large-8 push-4 columns" id="viz">
+ <div  class="panel" >
+	 	<div class="row" >
+	 		<div id="map">
+       		</div>
+		 </div>
 	</div>
-	<div id="pickData">
-	<h3>2. Select Gauge Data:</h3>
-	<h5><input type="checkbox" id="precipitationCheck">Precipitation</h5>
-	<h5><input type="checkbox" id="streamflowCheck">Streamflow</h5>
+	<div  class="panel" >
+	 	 <div class="row" >
+			<div id ="chart">
+			</div>
+		</div>
 	</div>
-	<div id="pickStorm">
-	<h3>3. Select Storm Event:</h3>
-	<select>
+</div>
+
+ 
+   <!-- End Grid Section -->
+  <!-- Nav Sidebar -->
+<div class="large-4 pull-8 columns" id ="navColumn">
+	  <div class="panel">
+	 <div class="row">
+	
+       <h3 class="step"><small><b>1. Select Stream Gauge:</b></small></h3>
+        <h5><small><select>
+          <option value="04074950">Wolf River at Langlade, WI - 04074950 </option>
+          <option value="0407850">Embarrass River Near Embarrass, WI - 0407850</option>
+          <option value="04073365">Fox River at Princeton, WI - 04073365</option>
+          <option value="04072150">Duck Creek Near Howard, WI - 04072150</option>
+        </select></small></h5>
+            <h4><small><b>Available Data:</b></small></h4>
+			<h4><small><input type="checkbox" id="precipitationCheck"> Precipitation</small></h4>
+			<h4><small><input type="checkbox" id="streamflowCheck"> Streamflow</small></h4>
+ <hr>
+ 	</div>
+	 	 <div class="row">
+		 <h3 class="step"><small><b>2. Select Storm Event:</b></small></h3>
+	 	<h5><small><select>
 		  <option value="volvo">May 10, 2004</option>
 		  <option value="saab">June 21, 2008</option>
 		  <option value="mercedes">July 15, 2010</option>
 		  <option value="audi">August 3, 2012</option>
-		</select>
-		<h5><b>Start Date:</b></h5>
-		<h5><b>End Date:</b></h5>
-		<h5><b>Duration:</b></h5>
-		<h5><b>Max Precip:</b></h5>
-		<h5><b>Adjust Transparency:</b></h5>
-		<form>
-			  0<input name="stormOpacity" type="range" min="0" max="100" value="50">100
-			  <input type="submit" value="Go">
-		</form>
-	</div>
-	<div id="animateMap">
-	<h3>4. Animate Storm Event:</h3>
-	<button type="button">Animate Map</button>
-	</div>
-	<div id="mapLayers">
-		<h3>Additional Map Layers:</h3>
-		<h5><input type="checkbox" id="fwWatershedCheck">Fox-Wolf Watershed</h5>
-		<h5><input type="checkbox" id="landCoverCheck">LandCover</h5>
-	</div>
-</div>
-<div id=fwContainer>
-	<h4 id="fwHeader">Fox-Wolf Watershed</h4>
-	<div id="fwMap"></div>
-	<div id="fwChart"></div>
-</div>
-<div id=gbContainer>
-	<h4 id="gbHeader">Green Bay</h4>
-	<div id="gbMap"></div>
-	<div id="gbChart"></div>
-</div>
+		</select></small></h5>
+        	<h4><small>Start Date:</small></h4>
+			<h4><small>End Date:</small></h4>
+			<h4><small>Duration:</small></h4>
+			<h4><small>Max Precip:</small></h4>
+		<h4><small><b>Adjust Transparency:</b></small></h4>
+		<input type="text" data-slider="true" data-slider-range="0, 100">
 
-</div>
+	 </div>
+	 <hr>
+	 	 	 <div class="row">
+	 	 	  <h3 class="step"><small><b>3. Select Green Bay Data:</b></small></h3>
+		    <h4><small><b>For Graph:</b></small></h4>
+				<h4><small><input type="checkbox" id="turbidityCheck"> Turbidity</small></h4>
+			<h4><small><b>For Map:</b></small></h4>
+				<h4><small> <input type="radio" name="noVal" value="None" id="noVal"><label for="noVal"> None</label> </small></h4>
+     			<h4><small> <input type="radio" name="Chlorophyll" value="Chlorophyll" id="Chlorophyll"><label for="Chlorophyll"> Chlorophyll</label> </small></h4>
+     			<h4><small><input type="radio" name="waterTemp" value="waterTemp" id="waterTemp"><label for="waterTemp"> Surface Temperature</label></small></h4>
 
-<!-- JavaScript Libraries -->
+	 </div>
+	 <hr>
+<!--  	 	 	 	 <div class="row">
+	 	 	  <h3><small><b>4. Animate Event:</b></small></h3>
+			<a href="#" class="button">Animate</a>
+	 </div>
+	 <hr>-->
+	  	<div class="row">
+	 	 	  <h3 class="step"><small><b>Additional Map Layers:</b></small></h3>
+			<h4><small><input type="checkbox" id="foxWolf"> Fox-Wolf Watershed</small></h4>
+			<h4><small><input type="checkbox" id="landcover"> Landcover</small></h4>
+	 </div>
+	</div>
+ </div>
+<!-- End Nav Sidebar -->
+ 
+ 
+ 
+  <!-- Footer -->
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+    
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>© 2014 University of Wisconsin Sea Grant Institute </p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><a href="#">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+    <!-- JavaScript Libraries -->
 <script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="lib/leaflet.js"></script>
 <script type="text/javascript" src="lib/d3.min.js"></script>
 <script type="text/javascript" src="lib/c3.min.js"></script>
+<script type="text/javascript" src="lib/simple-slider.min.js"></script>
 
 
 <!-- Custom JavaScript Code -->

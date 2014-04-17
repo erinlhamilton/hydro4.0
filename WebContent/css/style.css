@@ -19,7 +19,7 @@ body{
 }
 
 #map{
-	height:500px;
+	height:100%;
 	width:100%;
 
 }
@@ -28,3 +28,7 @@ hr{
 	margin: 5px;
 }
 
+.step{
+	background-color: #ccc;
+	padding-left: 5px;
+}
