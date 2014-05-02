@@ -11,8 +11,8 @@ public class Gauge {
 	private String precipData;
 	private String streamData;
 	private String turbidityData;
-	private String startDate;
-	private String endDate;
+	//private String startDate;
+	//private String endDate;
 	private RetrieveData db = new RetrieveData();
 
 	/*
@@ -21,10 +21,7 @@ public class Gauge {
 	public Gauge(String gaugeID){
 		this.gaugeID = gaugeID;
 	}
-	
-	private void determineData(){
-		
-	}
+
 	
 	/*getter method
 	 * @returns: returns the ID of the catchment Area
@@ -37,7 +34,7 @@ public class Gauge {
 	 *  Returns the name of the gauge by calling the database
 	 * @returns: returns the name of the catchment
 	 */
-	public String name(){
+	public String getName(){
 		String sql = "SELECT name FROM gauges WHERE gaugeid = " + this.gaugeID;
 		gaugeName = db.getStringData(sql);
 		return gaugeName;
@@ -47,7 +44,7 @@ public class Gauge {
 	 * Returns the xy point of the gauge as a geojson
 	 * @returns: the the gauge point as a geojson
 	 */
-	public String point(){
+	public String getGaugePoint(){
 		String sql = "SELECT ST_AsGeoJSON(geom) FROM gauges WHERE gaugeid = " + this.gaugeID;
 		gaugePoint = db.getStringData(sql);
 		return gaugePoint;
@@ -58,7 +55,7 @@ public class Gauge {
 	 * Returns the geojson of the catchment related to the gauge
 	 * @returns: the the catchment polygon as a geojson
 	 */
-	public String catchment(){
+	public String getCatchmentArea(){
 		String sql = "SELECT ST_AsGeoJSON(geom) FROM catchment WHERE gaugeid = " + this.gaugeID;
 		catchmentPoly = db.getStringData(sql);
 		return catchmentPoly;
@@ -68,8 +65,8 @@ public class Gauge {
 	 * Returns a text string of the precipitation data
 	 * @returns: text string for given gauge
 	 */
-	public String precip(){
-		String sql = "SELECT gauges.gaugeid, gauges.name, precipitation.colldate, precipitation.pvalue "
+	public String getPrecip(){
+		String sql = "SELECT precipitation.colldate, precipitation.pvalue "
 				+ "FROM gauges "
 				+ "INNER JOIN precipitation ON "
 				+ "gauges.gaugeid = precipitation.gaugeid "
@@ -82,8 +79,8 @@ public class Gauge {
 	 * Returns a text string of the streamflow data
 	 * @returns: text string for given gauge
 	 */
-	public String streamflow(){
-		String sql = "SELECT gauges.gaugeid, gauges.name, streamflow.colldate, streamflow.svalue "
+	public String getStreamflow(){
+		String sql = "SELECT streamflow.colldate, streamflow.svalue "
 				+ "FROM gauges "
 				+ "INNER JOIN streamflow ON "
 				+ "gauges.gaugeid = streamflow.gaugeid "
@@ -96,8 +93,8 @@ public class Gauge {
 	 * Returns text string for turbidity data
 	 * @returns: text string for given gauge
 	 */
-	public String turbidity(){
-		String sql = "SELECT gauges.gaugeid, gauges.name, turbidity.colldate, turbidity.tvalue "
+	public String getTurbidity(){
+		String sql = "SELECT turbidity.colldate, turbidity.tvalue "
 				+ "FROM gauges "
 				+ "INNER JOIN turbidity ON "
 				+ "gauges.gaugeid = turbidity.gaugeid "
@@ -107,7 +104,7 @@ public class Gauge {
 	}
 	
 	public String calcStartDate(){
-		
+
 		return "";
 	}
 	

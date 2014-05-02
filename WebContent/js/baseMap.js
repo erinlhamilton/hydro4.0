@@ -2,12 +2,16 @@
  * 
  */
 
-var map = L.map('map').setView([44.500, -88.7000], 8);
+function setBaseMap(){
+	var foxwolf;
+	map = L.map('map').setView([44.500, -88.7000], 8);
 
-L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Map data Copyright <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-    maxZoom: 18
-}).addTo(map);
+	L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
+	    attribution: 'Map data Copyright <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+	    maxZoom: 18
+	}).addTo(map);
+
+}
 
 //var gbMap = L.map('gbMap').setView([44.700, -87.800], 10);
 //
