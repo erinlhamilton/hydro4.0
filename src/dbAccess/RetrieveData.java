@@ -6,9 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class RetrieveGeom {
+public class RetrieveData {
+	
+	private String result;
+	
+	public RetrieveData(){
+	}
 
-	public static void main(String[] args) {
+	public String getStringData(String sqlStatement){
+		
 		Connection  conn;                     // holds database connection 
 		Statement   stmt;                     // holds SQL statement 
 		try {
@@ -17,11 +23,11 @@ public class RetrieveGeom {
 			 * Establish connection to the database nyc at localhost with the port as 5432
 			 * with the username as postgres, password as admin
 			 */
-			String url = "jdbc:postgresql://localhost:5432/hydro";
-			conn = DriverManager.getConnection(url, "postgres", "admin"); 
+			String url = "jdbc:postgresql:";
+			conn = DriverManager.getConnection(url, "", ""); 
 			
-			String sql = "SELECT ST_AsGeoJSON(geom) FROM catchment WHERE gaugeid = '0407809265'";
-			
+			//SQL statement passed to method
+			String sql = sqlStatement;
 			
 			/*
 			 * Create a statement and execute a select query
@@ -31,8 +37,7 @@ public class RetrieveGeom {
 
 			if (res != null){  // Making decision use if statement
 				while(res.next()){   // Loop all the results
-					String result = res.getString(1); 
-					System.out.println(result); 
+					result = res.getString(1); 
 				}
 			}
 			/*
@@ -48,5 +53,7 @@ public class RetrieveGeom {
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		return result;
 	}
 }
