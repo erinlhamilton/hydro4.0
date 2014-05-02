@@ -4,11 +4,12 @@
 
 /*global variables*/
 var map;
-var serverlocation = "http://localhost/hydro4.0/";
+var serverlocation = "http://localhost:8080/hydro4.0/";
 
 function initialize(){
 	/*use strict*/
 	setBaseMap();
+	loadFoxWolf();
 }
 
 

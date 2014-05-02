@@ -21,7 +21,7 @@ public class WebServices {
 	 * */
 	@GET
 	@Path("/hello")
-	@Produces("text/plain")
+	@Produces("application/json")
 	public String sayHello(){
 		//TODO: implement this
 		return "Hello There!";
@@ -52,7 +52,7 @@ public class WebServices {
 	 * */
 	@Path("/gauge/{id}")
 	@GET
-	@Produces("text/plain")
+	@Produces("text/javascript")
 	public String returnGauge(@PathParam("id") int ID){
 		//TODO: implement this
 		return "";
