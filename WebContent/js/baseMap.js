@@ -3,7 +3,7 @@
  */
 
 function setBaseMap(){
-	map = L.map('map').setView([44.500, -88.7000], 7);
+	map = L.map('map').setView([44.500, -88.7000], 8);
 
 	L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}', {
 	    attribution: 'Map data Copyright <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',

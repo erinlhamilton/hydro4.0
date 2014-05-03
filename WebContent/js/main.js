@@ -10,6 +10,7 @@ function initialize(){
 	/*use strict*/
 	setBaseMap();
 	loadFoxWolf();
+	loadAllGauges();
 }
 
 

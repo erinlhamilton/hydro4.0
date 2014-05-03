@@ -67,11 +67,8 @@
 	 <div class="row">
 	
        <h3 class="step"><small><b>1. Select Stream Gauge:</b></small></h3>
-        <h5><small><select>
-          <option value="04074950">Wolf River at Langlade, WI - 04074950 </option>
-          <option value="0407850">Embarrass River Near Embarrass, WI - 0407850</option>
-          <option value="04073365">Fox River at Princeton, WI - 04073365</option>
-          <option value="04072150">Duck Creek Near Howard, WI - 04072150</option>
+        <h5><small><select id = "gaugeDropdown">
+         <option value="null">Select One: </option>
         </select></small></h5>
             <h4><small><b>Available Data:</b></small></h4>
 			<h4><small><input type="checkbox" id="precipitationCheck"> Precipitation</small></h4>
@@ -142,7 +139,6 @@
   </footer>
     <!-- JavaScript Libraries -->
 <script type="text/javascript" src="lib/jquery-2.1.0.min.js"></script>
-<script type="text/javascript" src="lib/microajax.min.js"></script>
 <script type="text/javascript" src="lib/leaflet.js"></script>
 <script type="text/javascript" src="lib/d3.min.js"></script>
 <script type="text/javascript" src="lib/c3.min.js"></script>

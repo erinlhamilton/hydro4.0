@@ -11,6 +11,8 @@ public class Gauge {
 	private String precipData;
 	private String streamData;
 	private String turbidityData;
+	private String allGauges;
+	private String gaugeNames;
 	//private String startDate;
 	//private String endDate;
 	private RetrieveData db = new RetrieveData();
@@ -18,21 +20,27 @@ public class Gauge {
 	/*
 	 * Constructor for gauge.
 	 */
-	public Gauge(String gaugeID){
-		this.gaugeID = gaugeID;
+	public Gauge(){
 	}
 
+	/*
+	 * Setter for gaugeID.
+	 * @param: (gaugeID) the input gaugeID
+	 */
+	public void setID(String gaugeID){
+		this.gaugeID = gaugeID;
+	}
 	
-	/*getter method
-	 * @returns: returns the ID of the catchment Area
+	/*getter method for gaugeID
+	 * @returns: returns the ID of the gauge
 	 */
 	public String getID(){
 		return this.gaugeID;
 	}
 	
 	/*
-	 *  Returns the name of the gauge by calling the database
-	 * @returns: returns the name of the catchment
+	 *  Returns the name of the gauge by sending SQL to the database
+	 * @returns: returns the name of the gauge
 	 */
 	public String getName(){
 		String sql = "SELECT name FROM gauges WHERE gaugeid = " + this.gaugeID;
@@ -112,5 +120,22 @@ public class Gauge {
 		
 		return "";
 	}
+	
+	/* 
+	 * Returns a GEOJSON of all of the gauges including id and name
+	 * @returns: all geojson gauges
+	 */
+	public String getAllGaugesGeoJSON(){
+		String sql = "SELECT row_to_json(fc) " +
+		 "FROM ( SELECT 'FeatureCollection' As type, array_to_json(array_agg(f)) As features " +
+				 "FROM (SELECT 'Feature' As type " +
+				    ", ST_AsGeoJSON(lg.geom)::json As geometry " +
+				    ", row_to_json((SELECT l FROM (SELECT gaugeID, name) As l " +
+				      ")) As properties " +
+				   "FROM gauges As lg   ) As f )  As fc";
+		allGauges = db.getStringData(sql);
+		return allGauges;
+	}
+
 	
 }
