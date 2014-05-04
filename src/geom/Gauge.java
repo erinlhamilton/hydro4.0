@@ -4,7 +4,7 @@ import dbAccess.RetrieveData;
 
 public class Gauge {
 	
-	private String gaugeID;
+	private int gaugeID;
 	private String gaugeName;
 	private String gaugePoint;
 	private String catchmentPoly;
@@ -27,14 +27,14 @@ public class Gauge {
 	 * Setter for gaugeID.
 	 * @param: (gaugeID) the input gaugeID
 	 */
-	public void setID(String gaugeID){
+	public void setID(int gaugeID){
 		this.gaugeID = gaugeID;
 	}
 	
 	/*getter method for gaugeID
 	 * @returns: returns the ID of the gauge
 	 */
-	public String getID(){
+	public int getID(){
 		return this.gaugeID;
 	}
 	

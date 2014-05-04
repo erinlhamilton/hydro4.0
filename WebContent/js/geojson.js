@@ -2,8 +2,86 @@
  * 
  */
 
+/*The section is for creating the proportional symbol markers.*/
+	//set original style for each marker symbol
+function gaugeStyle(feature) {
+	return {
+		fillColor: 'yellow',
+		color: '#484848',
+		fillOpacity: 0.5
+	};
+}
+
+function onEachFeature(feature, layer){
+	var popupText = layer.feature.properties.gaugeid  + ": " + layer.feature.properties.name;
+	layer.bindPopup(popupText, {
+		offset: new L.Point(0, -10)
+	});
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: selectGauge
+    });
+}
+
+function selectGauge(e){
+	var layer = e.target;
+	retrieveLocation(layer.feature.properties.gaugeid);
+}
+
+function resetHighlight(e) {
+    var layer = e.target;
+	layer.setStyle({
+		 weight: 0,
+		 fillOpacity: 0.8
+	    });
+}
 
 
+function highlightFeature(e) {
+	
+    var layer = e.target;
+    layer.openPopup();
+    layer.setStyle({
+    	weight: 5,
+        fillOpacity: 1
+    });
+    
+    if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+    }
+}
+
+function dropDownHighlight(inSite){
+
+		console.log(inSite);
+	gauges.eachLayer(function(layer){
+		if (layer.feature.properties.gaugeid == inSite){
+			layer.openPopup();
+		}
+	});
+
+}
+
+function retrieveLocation(inSite){
+	
+	if(inSite != "null"){
+		gauges.eachLayer(function(layer){
+			if (layer.feature.properties.gaugeid == inSite){
+				layer.setStyle({radius: 10, fillColor: 'red' });
+				layer.openPopup();
+				layer.bringToFront();
+			}else{
+				layer.setStyle({radius: 5, fillColor: "#ff7800"});
+			}
+		});
+	}else{
+		gauges.eachLayer(function(layer){
+			layer.setStyle({radius: 6, fillColor: "#ff7800"});
+			layer.closePopup();
+		});
+	}
+}
 /**
  * Add the foxwolf watershed geojson to the 
  * map by making an ajax web service request
@@ -23,7 +101,8 @@ function loadFoxWolf(){
 	    crossDomain: true,
 	    dataType: 'json',
 	    success: function(data) { 
-	    	L.geoJson(data, {style: myStyle}).addTo(map);},//add to the map on success
+	    	//L.geoJson(data, {style: myStyle}).addTo(map);
+	    	},//add to the map on success
 	    error: function(e) { console.log(e); },
 	});
 	
@@ -31,16 +110,10 @@ function loadFoxWolf(){
 
 
 
+
+
 function loadAllGauges(){
 	
-	var geojsonMarkerOptions = {
-		    radius: 8,
-		    fillColor: "#ff7800",
-		    color: "#000",
-		    weight: 1,
-		    opacity: 1,
-		    fillOpacity: 0.8
-		};
 
 	//make ajax request to the server
 	$.ajax({
@@ -49,31 +122,60 @@ function loadAllGauges(){
 	    crossDomain: true,
 	    dataType: 'json',
 	    success: function(data) { 
-	    	populateDropdown(data);
-	    	L.geoJson(data, {
-	    	    pointToLayer: function (feature, latlng) {
-	    	        return L.circleMarker(latlng, geojsonMarkerOptions);
-	    	    },
-	    	    onEachFeature: function (feature, layer) {
-	    	        layer.bindPopup(feature.properties.gaugeid + ": " + feature.properties.name);
-	    	    }
-	    	}).addTo(map);},//add to the map on success
+	    	populateGaugeDropdown(data);//--> sidePanel.js
+	    	gauges = L.geoJson(data, {
+	    		  pointToLayer: function (feature, latlng) {
+		    	        return L.circleMarker(latlng, {
+		    			    radius: 6,
+		    			    fillColor: "#ff7800",
+		    			    color: 'red',
+		    			    weight: 0,
+		    			    opacity: 1,
+		    			    fillOpacity: 0.8
+		    			});
+		    	    },
+	    	    onEachFeature: onEachFeature
+	    	  
+	    	});
+	    	gauges.addTo(map);},//add geojson to map
 	    error: function(e) { console.log(e); },
 	});
 	
 }
 
-function populateDropdown(json){
+function loadCatchment(gaugeID){
+	//make ajax request to the server
+	$.ajax({
+	    url: serverlocation+ 'rest/services/GaugeGeoJSON',
+	    type: 'GET',
+	    crossDomain: true,
+	    dataType: 'json',
+	    success: function(data) { 
+	    	populateGaugeDropdown(data);//--> sidePanel.js
+	    	gauges = L.geoJson(data, {
+	    		  pointToLayer: function (feature, latlng) {
+		    	        return L.circleMarker(latlng, {
+		    			    radius: 6,
+		    			    fillColor: "#ff7800",
+		    			    color: 'red',
+		    			    weight: 0,
+		    			    opacity: 1,
+		    			    fillOpacity: 0.8
+		    			});
+		    	    },
+	    	    onEachFeature: onEachFeature
+	    	  
+	    	});
+	    	gauges.addTo(map);},//add geojson to map
+	    error: function(e) { console.log(e); },
+	});
 	
-	var select = document.getElementById("gaugeDropdown"); 
-	var obj = json.features;
-	for(var i = 0; i < obj.length; i++ ){
-		var el = document.createElement("option");
-	    el.textContent = obj[i].properties.gaugeid + " - " + obj[i].properties.name;
-	    el.value = obj[i].properties.gaugeid;
-	    select.appendChild(el);
-	}
+	
 }
+
+
+
+
 
 
 

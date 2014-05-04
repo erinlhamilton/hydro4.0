@@ -12,21 +12,6 @@ import geom.Gauge;
 @Path("/services")
 public class WebServices {
 	
-
-	/*
-	 * GET RestFull web service. Based on the gauge ID sent in the request
-	 * returns the related catchment geometry.
-	 * 
-	 * @param: (id) the id of the gauge
-	 * @return: The gauge polygon (as GeoJSON)
-	 * */
-	@GET
-	@Path("/hello")
-	@Produces("text/plain")
-	public String sayHello(){
-		//TODO: implement this
-		return "Hello There!";
-	}
 	
 	/*
 	 * GET RestFull web service. Based on the gauge ID sent in the request
@@ -52,12 +37,14 @@ public class WebServices {
 	 * @param: (id) the id of the gauge
 	 * @return: The gauge polygon (as GeoJSON)
 	 * */
-	@Path("/catchment/{id}")
 	@GET
+	@Path("/catchment/{id}")
 	@Produces("text/plain")
 	public String returnCatchment(@PathParam("id") int ID){
-		//TODO: implement this
-		return "";
+		Gauge g = new Gauge();
+		g.setID(ID);//set the id to current id
+		String catchment = g.getCatchmentArea();
+		return catchment;
 	}
 	
 	/*
@@ -67,12 +54,14 @@ public class WebServices {
 	 * @param: (id) the id of the gauge
 	 * @return: The gauge point (as GeoJSON)
 	 * */
-	@Path("/gauge/{id}")
 	@GET
+	@Path("/gauge/{id}")
 	@Produces("text/javascript")
 	public String returnGauge(@PathParam("id") int ID){
-		//TODO: implement this
-		return "";
+		Gauge g = new Gauge();
+		g.setID(ID);//set id to current id
+		String gauge = g.getGaugePoint();
+		return gauge;
 	}
 	
 	/*

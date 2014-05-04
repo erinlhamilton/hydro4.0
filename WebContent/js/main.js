@@ -4,6 +4,7 @@
 
 /*global variables*/
 var map;
+var gauges;
 var serverlocation = "http://localhost:8080/hydro4.0/";
 
 function initialize(){
