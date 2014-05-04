@@ -5,13 +5,15 @@
 /*global variables*/
 var map;
 var gauges;
+var foxwolf;
 var serverlocation = "http://localhost:8080/hydro4.0/";
 
 function initialize(){
 	/*use strict*/
 	setBaseMap();
-	loadFoxWolf();
 	loadAllGauges();
+	loadFoxWolf();
+	
 }
 
 

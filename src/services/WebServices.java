@@ -39,12 +39,12 @@ public class WebServices {
 	 * */
 	@GET
 	@Path("/catchment/{id}")
-	@Produces("text/plain")
-	public String returnCatchment(@PathParam("id") int ID){
+	@Produces("text/javascript")
+	public String returnCatchment(@PathParam("id") String cID){
 		Gauge g = new Gauge();
-		g.setID(ID);//set the id to current id
+		g.setID(cID);//set the id to current id
 		String catchment = g.getCatchmentArea();
-		return catchment;
+		return cID;
 	}
 	
 	/*
@@ -57,7 +57,7 @@ public class WebServices {
 	@GET
 	@Path("/gauge/{id}")
 	@Produces("text/javascript")
-	public String returnGauge(@PathParam("id") int ID){
+	public String returnGauge(@PathParam("id") String ID){
 		Gauge g = new Gauge();
 		g.setID(ID);//set id to current id
 		String gauge = g.getGaugePoint();

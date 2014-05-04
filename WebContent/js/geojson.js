@@ -13,9 +13,9 @@ function gaugeStyle(feature) {
 }
 
 function onEachFeature(feature, layer){
-	var popupText = layer.feature.properties.gaugeid  + ": " + layer.feature.properties.name;
+	var popupText ="<b>USGS Water Gauge</b><br> <b>ID: </b>"+ layer.feature.properties.gaugeid  + "<br><b>Name: </b>" + layer.feature.properties.name;
 	layer.bindPopup(popupText, {
-		offset: new L.Point(0, -10)
+		offset: new L.Point(0, -5)
 	});
     layer.on({
         mouseover: highlightFeature,
@@ -43,7 +43,7 @@ function highlightFeature(e) {
     var layer = e.target;
     layer.openPopup();
     layer.setStyle({
-    	weight: 5,
+    	weight: 2,
         fillOpacity: 1
     });
     
@@ -66,6 +66,7 @@ function dropDownHighlight(inSite){
 function retrieveLocation(inSite){
 	
 	if(inSite != "null"){
+		 loadCatchment(inSite);
 		gauges.eachLayer(function(layer){
 			if (layer.feature.properties.gaugeid == inSite){
 				layer.setStyle({radius: 10, fillColor: 'red' });
@@ -87,12 +88,13 @@ function retrieveLocation(inSite){
  * map by making an ajax web service request
  */
 function loadFoxWolf(){
+	
 	var id = 1;//the postgres pkey of the foxwolf layer
 	//set the geojson style
 	var myStyle = {
 	    "color": "#ff7800",
 	    "weight": 0,
-	    "opacity": 0.65,
+	    "fillOpacity": 0.30,
 	};
 	//make ajax request to the server
 	$.ajax({
@@ -101,10 +103,15 @@ function loadFoxWolf(){
 	    crossDomain: true,
 	    dataType: 'json',
 	    success: function(data) { 
-	    	//L.geoJson(data, {style: myStyle}).addTo(map);
+	    	
+	    	foxwolf = L.geoJson(data, {style: myStyle});
+	    	foxwolf.addTo(map);
+	    	foxwolf.bringToBack();
+	    	$('#foxWolf').prop('checked', true);
 	    	},//add to the map on success
 	    error: function(e) { console.log(e); },
 	});
+	
 	
 }
 
@@ -143,30 +150,28 @@ function loadAllGauges(){
 	
 }
 
-function loadCatchment(gaugeID){
+function loadCatchment(gID){
+	
+	var gaugeID = "\'" + gID + "\'";
+	console.log(gaugeID);
+	var myStyle = {
+		    "color": 'blue',
+		    "weight": 0,
+		    "opacity": 0.8,
+		};
+	var catchment;
 	//make ajax request to the server
 	$.ajax({
-	    url: serverlocation+ 'rest/services/GaugeGeoJSON',
+	    url: serverlocation+ "rest/services/catchment/" + gaugeID,
 	    type: 'GET',
 	    crossDomain: true,
 	    dataType: 'json',
 	    success: function(data) { 
-	    	populateGaugeDropdown(data);//--> sidePanel.js
-	    	gauges = L.geoJson(data, {
-	    		  pointToLayer: function (feature, latlng) {
-		    	        return L.circleMarker(latlng, {
-		    			    radius: 6,
-		    			    fillColor: "#ff7800",
-		    			    color: 'red',
-		    			    weight: 0,
-		    			    opacity: 1,
-		    			    fillOpacity: 0.8
-		    			});
-		    	    },
-	    	    onEachFeature: onEachFeature
-	    	  
-	    	});
-	    	gauges.addTo(map);},//add geojson to map
+	    	
+	    	catchment = L.geoJson(data, {style: myStyle});
+	    	catchment.addTo(map);
+	    	
+	    	},
 	    error: function(e) { console.log(e); },
 	});
 	

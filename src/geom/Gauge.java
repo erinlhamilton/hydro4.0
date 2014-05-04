@@ -4,7 +4,7 @@ import dbAccess.RetrieveData;
 
 public class Gauge {
 	
-	private int gaugeID;
+	private String gaugeID;
 	private String gaugeName;
 	private String gaugePoint;
 	private String catchmentPoly;
@@ -12,7 +12,6 @@ public class Gauge {
 	private String streamData;
 	private String turbidityData;
 	private String allGauges;
-	private String gaugeNames;
 	//private String startDate;
 	//private String endDate;
 	private RetrieveData db = new RetrieveData();
@@ -27,14 +26,14 @@ public class Gauge {
 	 * Setter for gaugeID.
 	 * @param: (gaugeID) the input gaugeID
 	 */
-	public void setID(int gaugeID){
+	public void setID(String gaugeID){
 		this.gaugeID = gaugeID;
 	}
 	
 	/*getter method for gaugeID
 	 * @returns: returns the ID of the gauge
 	 */
-	public int getID(){
+	public String getID(){
 		return this.gaugeID;
 	}
 	
@@ -78,7 +77,8 @@ public class Gauge {
 				+ "FROM gauges "
 				+ "INNER JOIN precipitation ON "
 				+ "gauges.gaugeid = precipitation.gaugeid "
-				+ "WHERE gauges.gaugeid = " + this.gaugeID;
+				+ "WHERE gauges.gaugeid = " + this.gaugeID
+			    + " ORDER BY precipitation.colldate ASC";
 		precipData = db.getStringData(sql);
 		return precipData;
 	}

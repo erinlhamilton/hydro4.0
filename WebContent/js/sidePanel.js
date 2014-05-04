@@ -33,3 +33,16 @@ $("#gaugeDropdown").mouseover(function(e) {
 	}
 	
 });
+
+$('#foxWolf').click(function() {
+	if(this.checked){
+	    foxwolf.setStyle({
+	        fillOpacity: 0.30
+	    });
+	    foxwolf.bringToBack();
+	}else{
+	    foxwolf.setStyle({
+	        fillOpacity: 0
+	    });
+	}
+});
