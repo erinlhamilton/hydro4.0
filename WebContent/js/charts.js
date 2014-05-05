@@ -25,6 +25,7 @@ function retrieveChartData(dataType, gaugeID){
 	    						precipValue.push(num);
 	    					}
 	    				}
+	    				$('#Precipitation').prop('checked', true);
 	    				loadChart(dataType, precipDate, precipValue);
 		    			break;
 	    			case "Streamflow":
@@ -55,7 +56,7 @@ function retrieveChartData(dataType, gaugeID){
 	    			}
 	    	}else{
 	    		//Disable the data checkbox if data does not return
-	    		$("\"#"+dataType+"\"").attr("disabled", true);
+	    		$("#"+dataType+"\"").attr("disabled", true);
 	    	}
 	    	loadChart();
 	    },//add geojson to map

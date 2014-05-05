@@ -64,6 +64,7 @@ function dropDownHighlight(inSite){
 }
 
 function retrieveLocation(inSite){
+	var gaugeSite = "'" + inSite + "'";
 	
 	if(inSite != "null"){
 		 loadCatchment(inSite);
@@ -76,6 +77,8 @@ function retrieveLocation(inSite){
 				layer.setStyle({radius: 5, fillColor: "#1f78b4" });
 			}
 		});
+		 retrieveChartData("Precipitation", gaugeSite);
+		// retrieveChartData('Streamflow', inSite);
 	}else{
 		gauges.eachLayer(function(layer){
 			layer.setStyle({radius: 6, fillColor: "#1f78b4"});
