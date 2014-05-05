@@ -7,15 +7,18 @@ var map;
 var gauges;
 var foxwolf;
 var chart;
+var columnArray;
+var yAxis;
 var catchment = new Array();
 var serverlocation = "http://localhost:8080/hydro4.0/";
 
 function initialize(){
 	/*use strict*/
-	loadChart();
+	retrieveChartData("Precipitation", "'04072150'");
 	setBaseMap();
 	loadAllGauges();
 	loadFoxWolf();
+	
 	
 }
 

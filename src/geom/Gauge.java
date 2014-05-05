@@ -40,7 +40,7 @@ public class Gauge {
 	 */
 	public String getName(){
 		String sql = "SELECT name FROM gauges WHERE gaugeid = " + this.gaugeID;
-		gaugeName = db.getStringData(sql);
+		gaugeName = db.getGeoJSON(sql);
 		return gaugeName;
 	}
 	
@@ -50,7 +50,7 @@ public class Gauge {
 	 */
 	public String getGaugePoint(){
 		String sql = "SELECT ST_AsGeoJSON(geom) FROM gauges WHERE gaugeid = " + this.gaugeID;
-		gaugePoint = db.getStringData(sql);
+		gaugePoint = db.getGeoJSON(sql);
 		return gaugePoint;
 	}
 	
@@ -61,7 +61,7 @@ public class Gauge {
 	 */
 	public String getCatchmentArea(){
 		String sql = "SELECT ST_AsGeoJSON(geom) FROM catchment WHERE gaugeid = " + this.gaugeID;
-		catchmentPoly = db.getStringData(sql);
+		catchmentPoly = db.getGeoJSON(sql);
 		return catchmentPoly;
 	}
 	
@@ -74,13 +74,18 @@ public class Gauge {
 		String json_string ="";
 		if(gaugeType.equals("precipitation") || gaugeType.equals("streamflow") || gaugeType.equals("turbidity")){
 			ArrayList<ArrayList> gaugeData = db.getStreamGuageData(this.gaugeID, gaugeType);
-			json_string = "[";
-			for (ArrayList<String> s : gaugeData){
-				json_string = json_string.concat("{\"" + s.get(0) + "\":\"" + s.get(1) + "\"},");
+			if(gaugeData.size() > 0){
+				json_string = "[";
+				for (ArrayList<String> s : gaugeData){
+					json_string = json_string.concat("{\"date\":\"" + s.get(0) + "\",\"value\":" + s.get(1) + "},");
+				}
+				json_string = json_string.substring(0, json_string.length()-1); //remove the extra comma at the end
+				json_string = json_string.concat("]");
+				return json_string;
+			}else{
+				json_string = "null";
+				return json_string;
 			}
-			json_string = json_string.substring(0, json_string.length()-1); //remove the extra comma at the end
-			json_string = json_string.concat("]");
-			return json_string;
 		}else{
 			
 			return json_string;
@@ -100,7 +105,7 @@ public class Gauge {
 				    ", row_to_json((SELECT l FROM (SELECT gaugeID, name) As l " +
 				      ")) As properties " +
 				   "FROM gauges As lg   ) As f )  As fc";
-		allGauges = db.getStringData(sql);
+		allGauges = db.getGeoJSON(sql);
 		return allGauges;
 	}
 

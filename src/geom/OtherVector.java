@@ -20,13 +20,13 @@ public class OtherVector {
 	
 	public String getVectorGeom() {
 		String sql = "SELECT ST_AsGeoJSON(geom) FROM vectorpolys WHERE gid = " + this.vectorID;
-		vectorGeom = db.getStringData(sql);
+		vectorGeom = db.getGeoJSON(sql);
 		return vectorGeom;
 	}
 
 	public String getVectorName() {
 		String sql = "SELECT name FROM vectorpolys WHERE gid = " + this.vectorID;
-		vectorName = db.getStringData(sql);
+		vectorName = db.getGeoJSON(sql);
 		return vectorName;
 	}
 
