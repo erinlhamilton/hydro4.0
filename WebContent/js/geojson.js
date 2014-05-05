@@ -69,16 +69,16 @@ function retrieveLocation(inSite){
 		 loadCatchment(inSite);
 		gauges.eachLayer(function(layer){
 			if (layer.feature.properties.gaugeid == inSite){
-				layer.setStyle({radius: 10, fillColor: 'red' });
+				layer.setStyle({radius: 10, fillColor: "#ff7800" });
 				layer.openPopup();
 				layer.bringToFront();
 			}else{
-				layer.setStyle({radius: 5, fillColor: "#ff7800"});
+				layer.setStyle({radius: 5, fillColor: "#1f78b4" });
 			}
 		});
 	}else{
 		gauges.eachLayer(function(layer){
-			layer.setStyle({radius: 6, fillColor: "#ff7800"});
+			layer.setStyle({radius: 6, fillColor: "#1f78b4"});
 			layer.closePopup();
 		});
 	}
@@ -92,9 +92,9 @@ function loadFoxWolf(){
 	var id = 1;//the postgres pkey of the foxwolf layer
 	//set the geojson style
 	var myStyle = {
-	    "color": "#ff7800",
+	    "color": "#b2df8a",
 	    "weight": 0,
-	    "fillOpacity": 0.30,
+	    "fillOpacity": 0.5,
 	};
 	//make ajax request to the server
 	$.ajax({
@@ -134,8 +134,8 @@ function loadAllGauges(){
 	    		  pointToLayer: function (feature, latlng) {
 		    	        return L.circleMarker(latlng, {
 		    			    radius: 6,
-		    			    fillColor: "#ff7800",
-		    			    color: 'red',
+		    			    fillColor: "#1f78b4",
+		    			    color: "#ff7800",
 		    			    weight: 0,
 		    			    opacity: 1,
 		    			    fillOpacity: 0.8
@@ -151,6 +151,12 @@ function loadAllGauges(){
 }
 
 function loadCatchment(gID){
+	
+//	if ( $.inArray( '06/04/2012', bank_holidays ) > -1 ){
+//		
+//		catchment[gID].
+//		
+//	}
 	
 	var gaugeID = "\'" + gID + "\'";
 	console.log(gaugeID);

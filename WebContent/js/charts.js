@@ -1,4 +1,8 @@
-var chart = c3.generate({
+
+
+function loadChart(){
+
+chart = c3.generate({
     data: {
         xs: {
             'Precipitation': 'x1',
@@ -12,3 +16,4 @@ var chart = c3.generate({
         ]
     }
 });
+}

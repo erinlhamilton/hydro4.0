@@ -1,5 +1,7 @@
 package geom;
 
+import java.util.ArrayList;
+
 import dbAccess.RetrieveData;
 
 public class Gauge {
@@ -8,13 +10,8 @@ public class Gauge {
 	private String gaugeName;
 	private String gaugePoint;
 	private String catchmentPoly;
-	private String precipData;
-	private String streamData;
-	private String turbidityData;
 	private String allGauges;
-	//private String startDate;
-	//private String endDate;
-	private RetrieveData db = new RetrieveData();
+	private RetrieveData db = new RetrieveData();//new database object
 
 	/*
 	 * Constructor for gauge.
@@ -69,56 +66,26 @@ public class Gauge {
 	}
 	
 	/* 
-	 * Returns a text string of the precipitation data
+	 * Returns a json string of the gauge data
+	 * @param: precipitation, streamflow, or turbidity
 	 * @returns: text string for given gauge
 	 */
-	public String getPrecip(){
-		String sql = "SELECT precipitation.colldate, precipitation.pvalue "
-				+ "FROM gauges "
-				+ "INNER JOIN precipitation ON "
-				+ "gauges.gaugeid = precipitation.gaugeid "
-				+ "WHERE gauges.gaugeid = " + this.gaugeID
-			    + " ORDER BY precipitation.colldate ASC";
-		precipData = db.getStringData(sql);
-		return precipData;
-	}
-	
-	/* 
-	 * Returns a text string of the streamflow data
-	 * @returns: text string for given gauge
-	 */
-	public String getStreamflow(){
-		String sql = "SELECT streamflow.colldate, streamflow.svalue "
-				+ "FROM gauges "
-				+ "INNER JOIN streamflow ON "
-				+ "gauges.gaugeid = streamflow.gaugeid "
-				+ "WHERE gauges.gaugeid = " + this.gaugeID;
-		streamData= db.getStringData(sql);
-		return streamData;
-	}
-	
-	/* 
-	 * Returns text string for turbidity data
-	 * @returns: text string for given gauge
-	 */
-	public String getTurbidity(){
-		String sql = "SELECT turbidity.colldate, turbidity.tvalue "
-				+ "FROM gauges "
-				+ "INNER JOIN turbidity ON "
-				+ "gauges.gaugeid = turbidity.gaugeid "
-				+ "WHERE gauges.gaugeid = " + this.gaugeID;
-		turbidityData= db.getStringData(sql);
-		return turbidityData;
-	}
-	
-	public String calcStartDate(){
-
-		return "";
-	}
-	
-	public String calcEndDate(){
+	public String getGaugeData(String gaugeType){
+		String json_string ="";
+		if(gaugeType.equals("precipitation") || gaugeType.equals("streamflow") || gaugeType.equals("turbidity")){
+			ArrayList<ArrayList> gaugeData = db.getStreamGuageData(this.gaugeID, gaugeType);
+			json_string = "[";
+			for (ArrayList<String> s : gaugeData){
+				json_string = json_string.concat("{\"" + s.get(0) + "\":\"" + s.get(1) + "\"},");
+			}
+			json_string = json_string.substring(0, json_string.length()-1); //remove the extra comma at the end
+			json_string = json_string.concat("]");
+			return json_string;
+		}else{
+			
+			return json_string;
+		}
 		
-		return "";
 	}
 	
 	/* 
