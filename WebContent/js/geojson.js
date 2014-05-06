@@ -77,6 +77,9 @@ function retrieveLocation(inSite){
 				layer.setStyle({radius: 5, fillColor: "#1f78b4" });
 			}
 		});
+
+		$("#gaugeDropdown").val(inSite);
+
 		 retrieveChartData("Precipitation", gaugeSite);
 		// retrieveChartData('Streamflow', inSite);
 	}else{
@@ -179,7 +182,6 @@ function loadCatchment(gID){
 	    	
 	    	catchment = L.geoJson(data, {style: myStyle});
 	    	catchment.addTo(map);
-	    	
 	    	},
 	    error: function(e) { console.log(e); },
 	});

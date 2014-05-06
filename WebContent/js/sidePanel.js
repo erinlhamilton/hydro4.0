@@ -23,7 +23,6 @@ function populateGaugeDropdown(json){
 $("#gaugeDropdown").change(function() {
 	var n = $(this).val();
 	retrieveLocation(n);
-	
 });
 
 $("#gaugeDropdown").mouseover(function(e) {

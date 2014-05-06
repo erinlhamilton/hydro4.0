@@ -25,8 +25,10 @@ function retrieveChartData(dataType, gaugeID){
 	    						precipValue.push(num);
 	    					}
 	    				}
+	    				$("#Precipitation").attr("disabled", false);
 	    				$('#Precipitation').prop('checked', true);
-	    				loadChart(dataType, precipDate, precipValue);
+	    				loadAmChart(data);
+	    				//loadChart(precipDate, precipValue);
 		    			break;
 	    			case "Streamflow":
 	    				var streamflowValue = new Array();
@@ -56,9 +58,8 @@ function retrieveChartData(dataType, gaugeID){
 	    			}
 	    	}else{
 	    		//Disable the data checkbox if data does not return
-	    		$("#"+dataType+"\"").attr("disabled", true);
+	    		$("#Precipitation").attr("disabled", true);
 	    	}
-	    	loadChart();
 	    },//add geojson to map
 	    error: function(e) { console.log(e); },
 	});
@@ -66,7 +67,7 @@ function retrieveChartData(dataType, gaugeID){
 }
 
 
-function loadChart(dataType, xAxis, yAxis){
+function loadChart(xAxis, yAxis){
 	columnArray = [xAxis, yAxis];
 chart = c3.generate({
 	
@@ -83,4 +84,54 @@ chart = c3.generate({
         }
 	}
 });
+}
+
+function loadAmChart(chartData){
+AmCharts.makeChart("chart",
+	{
+		"type": "serial",
+		"pathToImages": "http://cdn.amcharts.com/lib/3/images/",
+		"categoryField": "date",
+		"dataDateFormat": "YYYY-MM-DD",
+		"categoryAxis": {
+			"parseDates": true
+		},
+		"chartCursor": {},
+		"chartScrollbar": {},
+		"trendLines": [],
+		"graphs": [
+			{
+				"bullet": "round",
+				"id": "AmGraph-1",
+				"title": "Precipitation(in)",
+				"valueField": "value"
+			}//,
+//			{
+//				"bullet": "square",
+//				"id": "AmGraph-2",
+//				"title": "graph 2",
+//				"valueField": "column-2"
+//			}
+		],
+		"guides": [],
+		"valueAxes": [
+			{
+				"id": "ValueAxis-1",
+				"title": ""
+			}
+		],
+		"allLabels": [],
+		"balloon": {},
+		"legend": {
+			"useGraphSettings": true
+		},
+		"titles": [
+			{
+				"id": "Title-1",
+				"size": 15,
+				"text": "Stream Gauges"
+			}
+		],
+		"dataProvider": chartData
+	});
 }
