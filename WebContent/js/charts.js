@@ -101,7 +101,7 @@ AmCharts.makeChart("chart",
 		"trendLines": [],
 		"graphs": [
 			{
-				"bullet": "round",
+				"bullet": "none",
 				"id": "AmGraph-1",
 				"title": "Precipitation(in)",
 				"valueField": "value"

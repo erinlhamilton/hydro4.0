@@ -9,7 +9,7 @@ var foxwolf;
 var chart;
 var columnArray;
 var yAxis;
-var catchment = new Array();
+var catchment = new Object();
 var serverlocation = "http://localhost:8080/hydro4.0/";
 
 function initialize(){

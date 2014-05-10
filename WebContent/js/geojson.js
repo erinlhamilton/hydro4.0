@@ -54,7 +54,6 @@ function highlightFeature(e) {
 
 function dropDownHighlight(inSite){
 
-		console.log(inSite);
 	gauges.eachLayer(function(layer){
 		if (layer.feature.properties.gaugeid == inSite){
 			layer.openPopup();
@@ -156,37 +155,46 @@ function loadAllGauges(){
 	
 }
 
+/*	Add the catchment geojson to the map
+ *  @param: (gID) the id of the gauge
+ */
 function loadCatchment(gID){
+
+	//for all of the objects in catchment, change the opacity to zero to disappear
+	for (var key in catchment){
+		 catchment[key].setStyle({fillOpacity: 0});
+	}
 	
-//	if ( $.inArray( '06/04/2012', bank_holidays ) > -1 ){
-//		
-//		catchment[gID].
-//		
-//	}
+	//if the catchment of that id is not in that catchment array, make an ajax request to retrieve
+	//it from the server
+	if(!(gID in catchment)){
+
+		var gaugeID = "\'" + gID + "\'";
 	
-	var gaugeID = "\'" + gID + "\'";
-	console.log(gaugeID);
-	var myStyle = {
-		    "color": 'blue',
-		    "weight": 0,
-		    "opacity": 0.8,
-		};
-	var catchment;
-	//make ajax request to the server
-	$.ajax({
-	    url: serverlocation+ "rest/services/catchment/" + gaugeID,
-	    type: 'GET',
-	    crossDomain: true,
-	    dataType: 'json',
-	    success: function(data) { 
-	    	
-	    	catchment = L.geoJson(data, {style: myStyle});
-	    	catchment.addTo(map);
-	    	},
-	    error: function(e) { console.log(e); },
-	});
+		var myStyle = {
+			    "color": 'blue',
+			    "weight": 0,
+			    "fillOpacity": 0.4,
+			};
 	
-	
+		//make ajax request to the server
+		$.ajax({
+		    url: serverlocation+ "rest/services/catchment/" + gaugeID,
+		    type: 'GET',
+		    crossDomain: true,
+		    dataType: 'json',
+		    success: function(data) { 
+		    	catchment[gID] = L.geoJson(data, {style: myStyle});
+		    	catchment[gID].addTo(map);
+		    	catchment[gID].bringToBack();
+		    	},
+		    error: function(e) { console.log(e); },
+		});
+		
+	}else{
+		//if catchment already exists in array, change opacity to appear
+		catchment[gID].setStyle({fillOpacity: 0.4});
+	}
 }
 
 
