@@ -2,18 +2,9 @@
  * 
  */
 
-/*The section is for creating the proportional symbol markers.*/
-	//set original style for each marker symbol
-function gaugeStyle(feature) {
-	return {
-		fillColor: 'yellow',
-		color: '#484848',
-		fillOpacity: 0.5
-	};
-}
-
 function onEachFeature(feature, layer){
-	var popupText ="<b>USGS Water Gauge</b><br> <b>ID: </b>"+ layer.feature.properties.gaugeid  + "<br><b>Name: </b>" + layer.feature.properties.name;
+	var gaugeName = toTitleCase(layer.feature.properties.name);
+	var popupText ="<b>USGS Water Gauge</b><br> <b>ID: </b>"+ layer.feature.properties.gaugeid  + "<br><b>Name: </b>" + gaugeName;
 	layer.bindPopup(popupText, {
 		offset: new L.Point(0, -5)
 	});
@@ -82,10 +73,12 @@ function retrieveLocation(inSite){
 		 retrieveChartData("Precipitation", gaugeSite);
 		// retrieveChartData('Streamflow', inSite);
 	}else{
+		//reset the gauge styles back to original
 		gauges.eachLayer(function(layer){
 			layer.setStyle({radius: 6, fillColor: "#1f78b4"});
 			layer.closePopup();
 		});
+		loadCatchment(null);//set the opacity of all catchment to 0
 	}
 }
 /**
@@ -120,10 +113,8 @@ function loadFoxWolf(){
 	
 }
 
-
-
-
-
+/*	Add all gauge geojson to the map
+ */
 function loadAllGauges(){
 	
 
@@ -174,7 +165,7 @@ function loadCatchment(gID){
 		var myStyle = {
 			    "color": 'blue',
 			    "weight": 0,
-			    "fillOpacity": 0.4,
+			    "fillOpacity": 0.6,
 			};
 	
 		//make ajax request to the server
@@ -193,13 +184,6 @@ function loadCatchment(gID){
 		
 	}else{
 		//if catchment already exists in array, change opacity to appear
-		catchment[gID].setStyle({fillOpacity: 0.4});
+		catchment[gID].setStyle({fillOpacity: 0.6});
 	}
 }
-
-
-
-
-
-
-

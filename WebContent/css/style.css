@@ -18,6 +18,10 @@ body{
 	background-color: #305269;
 }
 
+.top-bar-section li:not(.has-form) a:not(.button) {
+	background-color: #305269;
+}
+
 #map{
 	height:100%;
 	width:100%;

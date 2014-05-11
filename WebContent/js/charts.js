@@ -27,7 +27,7 @@ function retrieveChartData(dataType, gaugeID){
 	    				}
 	    				$("#Precipitation").attr("disabled", false);
 	    				$('#Precipitation').prop('checked', true);
-	    				loadAmChart(data);
+	    				loadAmChart(data, gaugeID);
 	    				//loadChart(precipDate, precipValue);
 		    			break;
 	    			case "Streamflow":
@@ -86,7 +86,7 @@ chart = c3.generate({
 });
 }
 
-function loadAmChart(chartData){
+function loadAmChart(chartData, gID){
 AmCharts.makeChart("chart",
 	{
 		"type": "serial",
@@ -129,7 +129,7 @@ AmCharts.makeChart("chart",
 			{
 				"id": "Title-1",
 				"size": 15,
-				"text": "Stream Gauges"
+				"text": "Stream Gauge " + gID
 			}
 		],
 		"dataProvider": chartData

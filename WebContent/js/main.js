@@ -13,8 +13,7 @@ var catchment = new Object();
 var serverlocation = "http://localhost:8080/hydro4.0/";
 
 function initialize(){
-	/*use strict*/
-	//retrieveChartData("Precipitation", "'04072150'");
+
 	setBaseMap();
 	loadAllGauges();
 	loadFoxWolf();

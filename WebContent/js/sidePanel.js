@@ -9,15 +9,21 @@
  */
 
 function populateGaugeDropdown(json){
-	
+	var gaugeName;
 	var select = document.getElementById("gaugeDropdown"); //access gaugeDropdown DOM element
 	var obj = json.features;
 	for(var i = 0; i < obj.length; i++ ){
 		var el = document.createElement("option");
-	    el.textContent = obj[i].properties.gaugeid + " - " + obj[i].properties.name;
+		gaugeName = toTitleCase(obj[i].properties.name);
+	    el.textContent = obj[i].properties.gaugeid + " - " + gaugeName;
 	    el.value = obj[i].properties.gaugeid;
 	    select.appendChild(el);
 	}
+}
+
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
 $("#gaugeDropdown").change(function() {
