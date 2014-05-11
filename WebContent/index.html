@@ -13,6 +13,18 @@
     <script src="lib/vendor/modernizr.js"></script>
 </head>
 <body>
+  
+   <!-- Splash Page -->
+   
+  <div id="myModal" class="reveal-modal" data-reveal>
+  <h2>Awesome. I have it.</h2>
+  <p class="lead">Your couch.  It is mine.</p>
+  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+ <!-- End Splash Page -->
+
       <!-- Header and Nav -->
   <nav class="top-bar" data-topbar>
     <ul class="title-area">
@@ -20,7 +32,7 @@
       <li class="name">
         <h1>
           <a href="#">
-           	Fox-Wolf Hydrologic Dashboard 4.0
+           	<b>Fox-Wolf Hydrologic Dashboard 4.0</b>
           </a>
         </h1>
       </li>
@@ -32,15 +44,15 @@
       <!-- Right Nav Section -->
       <ul class="right">
         <li class="divider"></li>
-        <li><a href="#">Help</a></li>
+        <li><a href="#" data-reveal-id="myModal"><b>Help</b></a></li>
         <li class="divider"></li>
-        <li><a href="#About">About</a></li>
+        <li><a href="#About"><b>About</b></a></li>
           </ul>
     </section>
   </nav>
  
- 
   <!-- End Header and Nav -->
+
  
   <!-- Main Grid Section -->
 
@@ -66,13 +78,13 @@
 	  <div class="panel">
 	 <div class="row">
 	
-       <h3 class="step"><small><b>1. Select Stream Gauge:</b></small></h3>
+       <h3 class="step"><small><b>1. Select Streamgauge:</b></small></h3>
         <h5><small><select id = "gaugeDropdown">
          <option value="null">Select One: </option>
         </select></small></h5>
             <h4><small><b>Available Data:</b></small></h4>
-			<h4><small><input type="checkbox" id="Precipitation"> Precipitation</small></h4>
-			<h4><small><input type="checkbox" id="Streamflow"> Streamflow</small></h4>
+			<h4><small><input type="checkbox" id="Precipitation"> <span data-tooltip class="has-tip" title="The amount of precipitation, in inches, that was collected at a given streamgauge in one day.">Precipitation</span></small></h4>
+			<h4><small><input type="checkbox" id="Streamflow"> <span data-tooltip class="has-tip" title="Tooltips are awesome, you should totally use them!"> Streamflow </span></small></h4>
  <hr>
  	</div>
 	 	 <div class="row">
@@ -105,6 +117,8 @@
 			<a href="#" class="button">Animate</a>
 	 </div>
 	 <hr>-->
+	 
+	
 	  	<div class="row">
 	 	 	  <h3 class="step"><small><b>Additional Map Layers:</b></small></h3>
 			<h4><small><input type="checkbox" id="foxWolf"> Fox-Wolf Watershed</small></h4>
@@ -113,6 +127,7 @@
 	</div>
  </div>
 <!-- End Nav Sidebar -->
+ <!-- About Section -->
  <div class="large-12 columns" id="About">
 	  <div class="panel">
 	  <h3 class="step"><b>About</b></h3>
@@ -126,7 +141,7 @@
 	 </div>
 	 </div>
  
- 
+  <!--End About Section  -->
   <!-- Footer -->
  
   <footer class="row">

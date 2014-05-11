@@ -4,7 +4,7 @@
 
 function onEachFeature(feature, layer){
 	var gaugeName = toTitleCase(layer.feature.properties.name);
-	var popupText ="<b>USGS Water Gauge</b><br> <b>ID: </b>"+ layer.feature.properties.gaugeid  + "<br><b>Name: </b>" + gaugeName;
+	var popupText ="<b>USGS Streamgauge</b><br> <b>ID: </b>"+ layer.feature.properties.gaugeid  + "<br><b>Name: </b>" + gaugeName;
 	layer.bindPopup(popupText, {
 		offset: new L.Point(0, -5)
 	});
@@ -70,8 +70,8 @@ function retrieveLocation(inSite){
 
 		$("#gaugeDropdown").val(inSite);
 
-		 retrieveChartData("Precipitation", gaugeSite);
-		// retrieveChartData('Streamflow', inSite);
+		// retrieveChartData("Precipitation", gaugeSite);
+		retrieveChartData("Streamflow", gaugeSite);
 	}else{
 		//reset the gauge styles back to original
 		gauges.eachLayer(function(layer){
