@@ -8,6 +8,7 @@ import javax.ws.rs.Produces;
 
 import geom.OtherVector;
 import geom.Gauge;
+import dbAccess.RetrieveData;
 
 @Path("/services")
 public class WebServices {
@@ -128,6 +129,25 @@ public class WebServices {
 		OtherVector vectorData = new OtherVector(ID);
 		String geojson = vectorData.getVectorGeom();
 		return geojson;
+	}
+	
+	/*
+	 * GET RestFull web service. Based on start date and end
+	 * date will return a JSON of storm events in that range
+	 * 
+	 * @param: (startDate) start of date range
+	 * @param: (endDate) end of date range
+	 * @return: JSON of storm events in that range
+	 * */
+	@Path("/storms/{startDate}/{endDate}")
+	@GET
+	@Produces("application/json")
+	public String returnVector(
+							@PathParam("startDate") String startDate,
+							@PathParam("endDate") String endDate){
+		RetrieveData db = new RetrieveData();
+		String stormJSON = db.getStormData(startDate, endDate);
+		return stormJSON;
 	}
 	
 
