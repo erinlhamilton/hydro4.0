@@ -10,9 +10,7 @@ import java.util.ArrayList;
 public class RetrieveData {
 	
 	private String result;
-	private String serverLocation = "";
-	private String dbOwner = "";
-	private String dbPass = "";
+
 	
 	public RetrieveData(){
 	}
@@ -141,6 +139,61 @@ public ArrayList getStreamGuageData(String gaugeID, String dataType){
 	}
 	
 	return results;
+}
+
+
+
+/*
+ * Retrieves a json of storm events between two dates, based on dates passed in
+ * @param: (startDate) the start of the date range to check
+ * @param: (endDate) the end of the date range to check
+ * @return: (JSON) of storm events
+ */
+public String getStormData(String startDate, String endDate){
+	
+	Connection  conn;                     // holds database connection 
+	Statement   stmt;                     // holds SQL statement
+	try {
+		Class.forName("org.postgresql.Driver"); //Load the JDBC driver 			
+		/*
+		 * Establish connection to the database nyc at localhost with the port as 5432
+		 * with the username as postgres, password as admin
+		 */
+		String url = "jdbc:postgresql:" + serverLocation;
+		conn = DriverManager.getConnection(url, dbOwner, dbPass); 
+
+		//This query takes a start date and end date and returns a JSON of
+		//storm events that fall within those date ranges
+		String sql = "SELECT array_to_json(array_agg(row_to_json(t))) FROM " +
+					"(SELECT startdate,starttime,enddate,endtime,precip_in FROM stormevents " +
+					"WHERE startdate > " + startDate + " AND startdate < " + endDate + ") as t";
+		
+		/*
+		 * Create a statement and execute a select query
+		 */
+		stmt = conn.createStatement(); 
+		ResultSet res = stmt.executeQuery(sql); //send the query to the database
+
+		if (res != null){  // Making decision use if statement
+			while(res.next()){   // Loop all the results
+				result = res.getString(1); 
+			}
+		}
+		/*
+		 * After finishing query, close connection
+		 */
+		res.close(); 
+		stmt.close(); 
+		conn.close(); 	    
+
+	} catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}   // load database interface 
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+	
+	return result;
 }
 
 }
