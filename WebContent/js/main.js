@@ -7,6 +7,7 @@ var map;
 var gauges;
 var foxwolf;
 var chart;
+var gaugeDate = new Object();
 var columnArray;
 var yAxis;
 var catchment = new Object();

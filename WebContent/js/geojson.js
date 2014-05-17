@@ -69,9 +69,9 @@ function retrieveLocation(inSite){
 		});
 
 		$("#gaugeDropdown").val(inSite);
-
-		// retrieveChartData("Precipitation", gaugeSite);
-		retrieveChartData("Streamflow", gaugeSite);
+		//retrieveChartData("Streamflow", gaugeSite);
+		retrieveData(gaugeSite);
+		
 	}else{
 		//reset the gauge styles back to original
 		gauges.eachLayer(function(layer){
