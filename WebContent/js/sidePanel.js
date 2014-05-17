@@ -21,6 +21,21 @@ function populateGaugeDropdown(json){
 	}
 }
 
+/*
+ * Populate the gauge dropdown based on the storm json
+ * @param: (obj) json of all storm events
+ */
+
+function populateStormDropdown(obj){
+	var select = document.getElementById("stormDropdown"); //access gaugeDropdown DOM element
+	for(var i = 0; i < obj.length; i++ ){
+		var el = document.createElement("option");
+	    el.textContent = "Start Date: " + obj[i].startdate + " Precipitation: " + obj[i].precip_in + " in";
+	    el.value = obj[i].stid;
+	    select.appendChild(el);
+	}
+}
+
 function toTitleCase(str)
 {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});

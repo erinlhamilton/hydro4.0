@@ -109,6 +109,7 @@ function generateChartData(stream, precip, gaugeID){
 	
 	//with new data object, create the chart!
 	generateDoubleChart(chartData2, gaugeID);
+	getStormJSON("'2004-05-07'", "'2012-08-08'");
 }
 
 
