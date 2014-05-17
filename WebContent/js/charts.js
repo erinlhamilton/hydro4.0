@@ -33,6 +33,11 @@ function retrieveData(gaugeID){
 	    	    	//with both datasets
 	    	    	if (streamData != null & precipData != null){
 	    		    	
+	    	    		//determine the start and end range of the data
+	    	    		var start = determineStart(streamData, precipData);//-> storms.js
+	    	    		var end = determineEnd(streamData, precipData);//--> storms.js
+	    	    		var storms = getStormJSON(start, end);
+
 	    				$("#Precipitation").attr("disabled", false);
 	    				$("#Precipitation").prop('checked', true);
 	    				$("#Streamflow").attr("disabled", false);
@@ -43,7 +48,9 @@ function retrieveData(gaugeID){
 	    			//if streamflow data is not null, but precipitation data is
 	    			//only display streamflow data
 	    	    	}else if(streamData != null){
-
+	    	    		var start = "'"+ streamData[0].date +"'";
+	    	    		var end = "'"+ streamData[streamData.length-1].date +"'";
+	    	    		var storms = getStormJSON(start, end);
 	    				$("#Streamflow").attr("disabled", false);
 	    				$("#Streamflow").prop('checked', true);
 	    	    		//Disable the data checkbox if data does not return
@@ -53,7 +60,9 @@ function retrieveData(gaugeID){
     	    		//if precipitation data is not null, but streamflow data is
 	    			//only display precipitation data
 	    	    	}else{
-	    	    		
+	    	    		var start = "'"+ precipData[0].date +"'";
+	    	    		var end = "'"+ precipData[precipData.length-1].date +"'";
+	    	    		var storms = getStormJSON(start, end);
 	    				$("#Precipitation").attr("disabled", false);
 	    				$("#Precipitation").prop('checked', true);
 	    				//Disable the data checkbox if data does not return
@@ -108,8 +117,9 @@ function generateChartData(stream, precip, gaugeID){
 	}
 	
 	//with new data object, create the chart!
+
 	generateDoubleChart(chartData2, gaugeID);
-	getStormJSON("'2004-05-07'", "'2012-08-08'");
+	
 }
 
 

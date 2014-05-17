@@ -17,3 +17,29 @@ function getStormJSON(startDate, endDate){
 		});
 
 }
+
+function determineStart(stream, precip){
+	
+	if(stream[0].date < precip[0].date){
+		
+		return "'" + stream[0].date +"'";
+		
+	}else{
+		
+		return "'" + precip[0].date +"'";
+	}
+	
+	
+}
+
+function determineEnd(stream, precip){
+	
+	if(stream[stream.length-1].date < precip[precip.length-1].date){
+		
+		return "'" + precip[precip.length-1].date +"'";
+		
+	}else{
+		return "'" + stream[stream.length-1].date +"'";
+	}
+	
+}
