@@ -114,20 +114,27 @@
 	    </tr>
 	  </tbody>
 	</table>
-		<h4><small><b>Adjust Transparency:</b></small></h4>
-		<input type="text" data-slider="true" data-slider-range="0, 100">
+		<h4><small><b>Adjust Storm Opacity:</b></small></h4>
+		<input type="text" data-slider="true" value="0.5"data-slider-range="0, 1" >
+		Opacity Value: <span style="vertical-align: top">0.5</span>
 
 	 </div>
 	 <hr>
 	 	 	 <div class="row">
 	 	 	  <h3 class="step"><small><b>3. Select Green Bay Data:</b></small></h3>
-		    <h4><small><b>For Graph:</b></small></h4>
+		   <!--   <h4><small><b>For Graph:</b></small></h4>
 				<h4><small><input type="checkbox" id="turbidityCheck"> Turbidity</small></h4>
-			<h4><small><b>For Map:</b></small></h4>
-				<h4><small> <input type="radio" name="noVal" value="None" id="noVal"><label for="noVal"> None</label> </small></h4>
-     			<h4><small> <input type="radio" name="Chlorophyll" value="Chlorophyll" id="Chlorophyll"><label for="Chlorophyll"> Chlorophyll</label> </small></h4>
-     			<h4><small><input type="radio" name="waterTemp" value="waterTemp" id="waterTemp"><label for="waterTemp"> Surface Temperature</label></small></h4>
-
+			<h4><small><b>For Map:</b></small></h4>-->
+				 	<h5><small><select id = "mtriDropdown">
+				 	<option value="null">Select One: </option>
+	 				<option value="CHL">Chlorophyll</option>
+	 				<option value="CHLLOW"> Chlorophyll (low productivity)</option>
+	 				<option value="LST">Lake Surface Temperature</option>
+	 				<option value="DOC">Dissolved Organic Carbon</option>
+	 				<option value="SM">Suspended Minerals</option>
+	 				<option value="HABs">Harmful Algal Blooms</option>
+	 				<option value="NCI">Natural Color Imagery</option>
+					</select></small></h5>
 	 </div>
 	 <hr>
 <!--  	 	 	 	 <div class="row">
@@ -140,7 +147,7 @@
 	  	<div class="row">
 	 	 	  <h3 class="step"><small><b>Additional Map Layers:</b></small></h3>
 			<h4><small><input type="checkbox" id="foxWolf"> Fox-Wolf Watershed</small></h4>
-			<h4><small><input type="checkbox" id="landcover"> Landcover</small></h4>
+			<!-- <h4><small><input type="checkbox" id="landcover"> Landcover</small></h4> -->
 	 </div>
 	</div>
  </div>

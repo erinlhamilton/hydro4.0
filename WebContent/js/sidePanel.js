@@ -78,14 +78,25 @@ $("#stormDropdown").change(function() {
 	}
 });
 
+$("#mtriDropdown").change(function() {
+	console.log($(this).val());
+	console.log(endStormDate);
+	var n = $(this).val();
+	addMTRI(n, endStormDate);
+});
+	
 function stormMetadata(key){
 	
-	$("#stormStart").append(storms[key].startdate);
-	$("#stormEnd").append(storms[key].enddate);
+	$("#stormStart").html(storms[key].startdate);
+	$("#stormEnd").html(storms[key].enddate);
 	//$("#stormDuration").append(storms[key].startdate);
-	$("#stormPrecip").append(storms[key].precip_in + " in");
+	$("#stormPrecip").html(storms[key].precip_in + " in");
+	modifyDate(storms[key].enddate);
 	addStorm(storms[key].name);
+	ia_wms.setOpacity(0.5);
 }
+
+
 
 $("#gaugeDropdown").mouseover(function(e) {
 	var $target = $(e.target);
@@ -107,3 +118,9 @@ $('#foxWolf').click(function() {
 	    });
 	}
 });
+
+function modifyDate(inDate){
+
+	endStormDate = inDate.replace(/-/g, "");
+}
+
