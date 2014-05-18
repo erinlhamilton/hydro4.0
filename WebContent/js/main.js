@@ -7,10 +7,13 @@ var map;
 var gauges;
 var foxwolf;
 var chart;
+var storms;
 var gaugeDate = new Object();
 var columnArray;
 var yAxis;
+var ia_wms;
 var catchment = new Object();
+var mapWebServer ="http://maps.aqua.wisc.edu/cgi-bin/mapserv.exe";
 var serverlocation = "http://localhost:8080/hydro4.0/";
 
 function initialize(){

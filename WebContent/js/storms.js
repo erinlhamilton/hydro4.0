@@ -10,7 +10,7 @@ function getStormJSON(startDate, endDate){
 		    crossDomain: true,
 		    dataType: 'json',
 		    success: function(data) { 
-		    	console.log(data);
+		    	storms = data;
 		    	populateStormDropdown(data);
 		    	},
 		    error: function(e) { console.log(e); },
@@ -30,6 +30,23 @@ function determineStart(stream, precip){
 	}
 	
 	
+}
+
+function addStorm(event){
+	
+	ia_wms = new L.tileLayer.wms(mapWebServer,
+			{
+				map: "ntp_kgrb_large_wms",
+				crs: L.CRS.EPSG4326,
+				layers: event,
+				bbox: "-91.0,41.5,-85.0,47.5",
+				width:"600",
+				height:"600",
+				transparent: true,
+				styles: "default",
+				format: 'image/png'
+			}
+		).addTo(map);
 }
 
 function determineEnd(stream, precip){

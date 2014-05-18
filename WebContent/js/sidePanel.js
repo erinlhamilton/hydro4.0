@@ -21,6 +21,27 @@ function populateGaugeDropdown(json){
 	}
 }
 
+
+/*
+ * Populate the gauge dropdown based on the gauge geojson properties
+ * @param: geojson from loadAllGauges
+ */
+
+function populateStormMetadata(json){
+	var gaugeName;
+	var select = document.getElementById("gaugeDropdown"); //access gaugeDropdown DOM element
+	var obj = json.features;
+	for(var i = 0; i < obj.length; i++ ){
+		var el = document.createElement("option");
+		gaugeName = toTitleCase(obj[i].properties.name);
+	    el.textContent = obj[i].properties.gaugeid + " - " + gaugeName;
+	    el.value = obj[i].properties.gaugeid;
+	    select.appendChild(el);
+	}
+}
+
+
+
 /*
  * Populate the gauge dropdown based on the storm json
  * @param: (obj) json of all storm events
@@ -45,6 +66,26 @@ $("#gaugeDropdown").change(function() {
 	var n = $(this).val();
 	retrieveLocation(n);
 });
+
+$("#stormDropdown").change(function() {
+
+	for(var key in storms) {
+	    if(storms.hasOwnProperty(key)) {
+	        if($(this).val() == storms[key].stid ){
+	        	stormMetadata(key);
+	        }
+	    }
+	}
+});
+
+function stormMetadata(key){
+	
+	$("#stormStart").append(storms[key].startdate);
+	$("#stormEnd").append(storms[key].enddate);
+	//$("#stormDuration").append(storms[key].startdate);
+	$("#stormPrecip").append(storms[key].precip_in + " in");
+	addStorm(storms[key].name);
+}
 
 $("#gaugeDropdown").mouseover(function(e) {
 	var $target = $(e.target);

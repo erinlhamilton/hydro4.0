@@ -64,9 +64,10 @@
 		 </div>
 	</div>
 	<div  class="panel" >
-	 	
+	 	<div id ="chartContainer">
+	 	<h4 id = "chartName"></h4>
 			<div id ="chart">
-		
+		</div>
 		</div>
 	</div>
 </div>
@@ -92,10 +93,27 @@
 	 	<h5><small><select id = "stormDropdown">
 	 	<option value="null">Select One: </option>
 		</select></small></h5>
-        	<h4><small>Start Date:</small></h4>
-			<h4><small>End Date:</small></h4>
-			<h4><small>Duration:</small></h4>
-			<h4><small>Max Precip:</small></h4>
+
+		<table>
+		 <tbody>
+	    <tr>
+	      <td><h4><small>Start Date:</small></h4></td>
+	      <td id = "stormStart"></td>
+	    </tr>
+	    <tr>
+	      <td><h4><small>End Date:</small></h4></td>
+	      <td id = "stormEnd"> </td>
+	    </tr>
+	    <tr>
+	      <td><h4><small>Duration:</small></h4></td>
+	      <td id = "stormDuration"> </td>
+	    </tr>
+	    <tr>
+	      <td><h4><small>Total Precipitation:</small></h4></td>
+	      <td id = "stormPrecip"> </td>
+	    </tr>
+	  </tbody>
+	</table>
 		<h4><small><b>Adjust Transparency:</b></small></h4>
 		<input type="text" data-slider="true" data-slider-range="0, 100">
 
